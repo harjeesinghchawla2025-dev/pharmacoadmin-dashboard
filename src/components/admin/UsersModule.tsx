@@ -483,8 +483,7 @@ export function UsersModule() {
               {deleteMutation.isPending ? "Deleting…" : "Delete user"}
             </AlertDialogAction>
           </AlertDialogFooter>
-        </AlertDialogFooter>
-      </AlertDialogContent>
+        </AlertDialogContent>
       </AlertDialog>
     </div>
   );
