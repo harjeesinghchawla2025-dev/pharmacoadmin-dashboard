@@ -137,7 +137,7 @@ const MOCK_GUIDELINES: Guideline[] = [
 /* Transport                                                          */
 /* ------------------------------------------------------------------ */
 
-const BASE_URL = (import.meta.env["VITE_ADMIN_API_URL"] as string | undefined) ?? "";
+export const BASE_URL = (import.meta.env["VITE_ADMIN_API_URL"] as string | undefined) ?? "";
 
 export const isApiConfigured = () => BASE_URL.length > 0;
 
