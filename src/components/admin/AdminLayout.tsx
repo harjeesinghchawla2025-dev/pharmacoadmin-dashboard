@@ -46,23 +46,39 @@ export function AdminLayout({ title, subtitle, activeLabel, children }: AdminLay
           {NAV_ITEMS.map((item) => {
             const Icon = item.icon;
             const active = item.label === activeLabel;
-            return (
-              <Link
-                key={item.label}
-                to={item.to}
-                params={item.section ? { section: item.section } : undefined}
-                onClick={() => setOpen(false)}
-                className={`flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors ${
-                  active
-                    ? "bg-sidebar-accent font-medium text-sidebar-accent-foreground"
-                    : "text-sidebar-foreground/75 hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground"
-                }`}
-              >
+            const className = `flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors ${
+              active
+                ? "bg-sidebar-accent font-medium text-sidebar-accent-foreground"
+                : "text-sidebar-foreground/75 hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground"
+            }`;
+            const inner = (
+              <>
                 <Icon className="size-4 shrink-0" />
                 <span className="truncate">{item.label}</span>
+              </>
+            );
+            return item.section ? (
+              <Link
+                key={item.label}
+                to="/admin/$section"
+                params={{ section: item.section }}
+                onClick={() => setOpen(false)}
+                className={className}
+              >
+                {inner}
+              </Link>
+            ) : (
+              <Link
+                key={item.label}
+                to="/"
+                onClick={() => setOpen(false)}
+                className={className}
+              >
+                {inner}
               </Link>
             );
           })}
+
         </nav>
 
         <div className="mx-3 mt-2 rounded-md border border-sidebar-border p-3">
