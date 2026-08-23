@@ -44,7 +44,7 @@ export class ApiError extends Error {
   }
 }
 
-async function request<T>(path: string, init?: RequestInit): Promise<T> {
+export async function request<T>(path: string, init?: RequestInit): Promise<T> {
   if (!isApiConfigured()) {
     throw new ApiError(
       "Admin API is not configured. Set VITE_ADMIN_API_URL to your backend URL.",
@@ -86,7 +86,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   return body as T;
 }
 
-function unwrap<T>(value: unknown): T[] {
+export function unwrap<T>(value: unknown): T[] {
   if (Array.isArray(value)) return value as T[];
   if (value && typeof value === "object" && Array.isArray((value as { data?: unknown }).data)) {
     return (value as { data: T[] }).data;
